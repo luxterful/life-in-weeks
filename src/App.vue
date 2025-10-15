@@ -91,7 +91,7 @@ onMounted(() => {
 
 <template>
   <div class="p-4 min-h-screen w-full bg-neutral-950 text-neutral-100">
-    <div class="mx-auto max-w-[900px]">
+    <div class="mx-auto w-full">
       <div v-if="!hasDobParam" class="flex items-center gap-2 mb-4 justify-center">
         <label class="font-semibold" for="birthday">Birthday</label>
         <input
@@ -106,7 +106,7 @@ onMounted(() => {
         <tbody>
           <tr v-for="year in TOTAL_YEARS" :key="year - 1">
             <td
-              class="pr-2 w-8 text-right align-middle text-[10px] text-white select-none relative"
+              class="pr-2 w-8 text-right align-middle text-[8px] md:text-[10px] text-white select-none relative"
             >
               <span class="absolute -top-0.5 right-0">
                 {{ year % 5 === 0 ? year : '' }}
@@ -115,14 +115,14 @@ onMounted(() => {
             <td
               v-for="week in WEEKS_PER_YEAR"
               :key="week - 1"
-              class="size-2 rounded-xs"
+              class="size-0.5 sm:size-1 md:size-2 rounded-xs"
               :class="[
                 isWeekPassed(year - 1, week - 1) ? 'bg-rose-600' : 'bg-neutral-800',
                 week === LIFE_EXPECTANCY.women.weeks && year === LIFE_EXPECTANCY.women.years
-                  ? 'border-1 border-emerald-500'
+                  ? 'outline-1 outline-emerald-500'
                   : '',
                 week === LIFE_EXPECTANCY.men.weeks && year === LIFE_EXPECTANCY.men.years
-                  ? 'border-1 border-blue-500'
+                  ? 'outline-1 outline-blue-500'
                   : '',
               ]"
               aria-hidden="true"
