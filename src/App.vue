@@ -99,6 +99,13 @@ onMounted(() => {
         <tbody>
           <tr v-for="year in TOTAL_YEARS" :key="year - 1">
             <td
+              class="pr-2 w-8 text-right align-middle text-[10px] text-white select-none relative"
+            >
+              <span class="absolute -top-0.5 right-0">
+                {{ year % 5 === 0 ? year : '' }}
+              </span>
+            </td>
+            <td
               v-for="week in WEEKS_PER_YEAR"
               :key="week - 1"
               class="size-2 rounded-xs"
