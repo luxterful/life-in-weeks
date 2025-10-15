@@ -109,7 +109,7 @@ onMounted(() => {
               v-for="week in WEEKS_PER_YEAR"
               :key="week - 1"
               class="size-2 rounded-xs"
-              :class="[isWeekPassed(year - 1, week - 1) ? 'bg-emerald-500' : 'bg-neutral-800']"
+              :class="[isWeekPassed(year - 1, week - 1) ? 'bg-rose-600' : 'bg-neutral-800']"
               aria-hidden="true"
             />
           </tr>
