@@ -7,6 +7,13 @@ const WEEKS_PER_YEAR = 52
 const birthInput = ref<string>('')
 const hasDobParam = ref(false)
 
+// Life expectancy references (source-provided):
+// Women: 81 years and 15 weeks; Men: 76 years and 10 weeks
+const LIFE_EXPECTANCY = {
+  women: { years: 81, weeks: 15, totalWeeks: 81 * WEEKS_PER_YEAR + 15 },
+  men: { years: 76, weeks: 10, totalWeeks: 76 * WEEKS_PER_YEAR + 10 },
+} as const
+
 const birthDate = computed<Date | null>(() => {
   if (!birthInput.value) return null
   const parts = birthInput.value.split('-').map(Number)
@@ -109,7 +116,15 @@ onMounted(() => {
               v-for="week in WEEKS_PER_YEAR"
               :key="week - 1"
               class="size-2 rounded-xs"
-              :class="[isWeekPassed(year - 1, week - 1) ? 'bg-rose-600' : 'bg-neutral-800']"
+              :class="[
+                isWeekPassed(year - 1, week - 1) ? 'bg-rose-600' : 'bg-neutral-800',
+                week === LIFE_EXPECTANCY.women.weeks && year === LIFE_EXPECTANCY.women.years
+                  ? 'border-1 border-emerald-500'
+                  : '',
+                week === LIFE_EXPECTANCY.men.weeks && year === LIFE_EXPECTANCY.men.years
+                  ? 'border-1 border-blue-500'
+                  : '',
+              ]"
               aria-hidden="true"
             />
           </tr>
